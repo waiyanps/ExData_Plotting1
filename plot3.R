@@ -13,10 +13,16 @@ new_df <- df %>%
   gather(key = "variable", value = "value", -DateTime)
 
 library("ggplot2")
-png(file="plot3.png")
+
 ggplot(new_df, aes(x=DateTime, y=value)) +
   geom_line(aes(color = variable, linetype = variable)) +
   labs(y="Energy sub metering")
 
+png(file="plot3.png")
+
+plot(df$DateTime, df$Sub_metering_1, type="l",xlab="",ylab="Energy sub metering")
+lines(df$DateTime, df$Sub_metering_2, col="red")
+lines(df$DateTime, df$Sub_metering_3, col="blue")
+legend("topright",c("Sub_metering_1","Sub_metering_2","Sub_metering_3"),col=c("black","red","blue"),lty=c(1,1),lwd=c(1,1))
 dev.off()
 

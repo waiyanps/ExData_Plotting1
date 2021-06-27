@@ -9,12 +9,13 @@ library("lubridate")
 
 df$DateTime <- as.POSIXct(paste(df$Date, df$Time), format="%d/%m/%Y %H:%M:%S")
 
+
 library("ggplot2")
-png(file="plot2.png")
 # ggplot
 ggplot(df, aes(DateTime, Global_active_power))+
   geom_line()
 
+png(file="plot2.png")
 # base plot
 plot(df$DateTime, df$Global_active_power, type="l", xlab = " ", ylab = "Global Active Power (kilowatts)")
 
