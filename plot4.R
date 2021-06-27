@@ -36,10 +36,26 @@ d <- ggplot(df, aes(x=DateTime, y=Global_reactive_power))+
      geom_line() +
    theme(axis.text.x = element_text(angle = 90))
 
-
 library("gridExtra")
 lst <- list(a,b,c,d)
-png(file="plot4.png")
 do.call(grid.arrange, c(lst, list(ncol=2)))
 
+
+# Plotting using Base
+png(file="plot4.png")
+
+
+par(mfrow=c(2,2))  
+
+plot(x=df$DateTime, y=df$Global_active_power, type="l",xlab="",ylab="Global Active Power")       
+
+plot(x=df$DateTime, y=df$Voltage, type="l",xlab="datetime",ylab="Voltage")          
+
+plot(x=df$DateTime, y=df$Sub_metering_1, type="l",xlab="",ylab="Energy sub metering")      
+lines(x=df$DateTime, y=df$Sub_metering_2, col="red")                                       
+lines(x=df$DateTime, y=df$Sub_metering_3, col="blue")                                      
+legend("topright",c("Sub_metering_1  ","Sub_metering_2  ", "Sub_metering_3  "),col=c("black","red","blue"),lty=c(1,1),bty="n")      ##make legend at topright of 3rd plot of plot4,
+
+
+plot(x= df$DateTime, y=df$Global_reactive_power, type="l",xlab="datetime",ylab="Global_reactive_power") 
 dev.off()
