@@ -8,8 +8,7 @@ View(df)
 library(ggplot2)
 library(ggthemr)
 
-# histogram using base
-hist(df$Global_active_power)
+
 
 # histogram using ggplot2 - qplot 
 qplot(df$Global_active_power,
@@ -21,6 +20,10 @@ ggthemr("dust",type="outer", layout="scientific", spacing=2)
 
 # save plot as png
 png(file="plot1.png")
+
+# histogram using base
+hist(df$Global_active_power,main="Global Active Power", col="red", xlab ="Global active power(kilowatts)" )
+
 # histogram using ggplot2 - ggplot
 ggplot(data = df, aes(Global_active_power)) +
   geom_histogram(col="red", fill="black",alpha=0.1) +
